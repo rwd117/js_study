@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>sample</title>
+</head>
+<body>
+    <div id="span"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const divid = document.getElementById('span');
+        let Cnt = 0;
+        const Span = ()=> (<span id="span-test">
+                        span view : {Cnt}
+                      </span>);
+        const Btn = ()=> <button id="btn-test" onClick = {() => Cnt+1 }> button click</button>;
+        const Container =  ()=> (<div>
+                 <Span/>
+                <Btn/>
+                </div>);
+        function App (){
+            const data = React.useState();
+            return
+             
+        };
+        render();
+        // const span = React.createElement(
+        //         'span',
+        //         null,
+        //         'span view'
+        // //         );
+        // const btn = React.createElement(
+        //         'button',
+        //         {
+        //             onClick : () => console.log('test'),
+        //         },
+        //         'button click'
+        //         );
+        
+       
+    </script>
+</body>
+</html>
