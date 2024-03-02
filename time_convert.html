@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>sample</title>
+</head>
+<body>
+    <div id="span"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const container = document.getElementById('span');
+
+        function App (){
+            
+            //배열이니까 나중에 확인은 한번 필요.
+            const [Times, setTimes] = React.useState();
+            const [Flip, setFlip] = React.useState(false);
+            
+            const reset = () => setTimes(0);
+            const onFlip = () => setTimes(0); setFlip((current) => !current ); 
+            const onTimes = (event) => {
+                //console.log(event.target.value);
+                setTimes(event.target.value);
+            };    
+
+            //jsx에서는 몇몇 html이랑 몇몇 선언이 다른게 존재. for htmlFor
+            return(
+                <div>
+                    <span id="span-test">
+                        Converter App
+                    </span>
+                    <br/>
+                    
+                    <label htmlFor="Minutes">Minutes</label>
+                    <input value={Flip ? Times*60 : Times} 
+                            id = "Minutes" placeholder="Minutes" 
+                            type="number"  onChange={onTimes} 
+                            disabled={Flip} />
+
+                    <label htmlFor="Hours">Hours</label>
+                    <input value={!Flip ? Math.round(Times/60) : Times} 
+                            id = "Hours" placeholder="Hours" 
+                            type="number" onChange={onTimes}
+                            disabled={!Flip} />
+                    
+                    <button onClick = {reset} >reset</button>
+                    <button onClick = {onFlip} >flip</button>
+                </div> 
+            )
+             
+        };
+        //최초 1회 랜더링
+        ReactDOM.render(<App/>,container);
+       
+    </script>
+</body>
+</html>

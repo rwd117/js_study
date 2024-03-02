@@ -10,35 +10,33 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        const divid = document.getElementById('span');
-        let Cnt = 0;
-        const Span = ()=> (<span id="span-test">
-                        span view : {Cnt}
-                      </span>);
-        const Btn = ()=> <button id="btn-test" onClick = {() => Cnt+1 }> button click</button>;
-        const Container =  ()=> (<div>
-                 <Span/>
-                <Btn/>
-                </div>);
+        const container = document.getElementById('span');
+
+        // 그럼 여기에서 변수값을 준다고 가정하면 해당 값 기준으로 각 페이지를 뿌리는게 가능할지도 ?    
         function App (){
-            const data = React.useState();
-            return
+
+            //state 하는 기초 방법
+            const [Counter , setCounter] = React.useState(0);
+
+            const cntUpdate = () => {
+            // 변수값 기준으로 계산, 그런데 변수값 겹치는 경우가 발생하는것 고려인듯.
+            //setCounter(Counter+1 );
+            // 현재 값 기준으로 계산 하는 방식
+             setCounter((current) => current+ 1);
+            };
+
+            return(
+                <div>
+                    <span id="span-test">
+                        span view : {Counter}
+                    </span>
+                    <button id="btn-test" onClick = {cntUpdate} > button click</button>
+                </div> 
+            )
              
         };
-        render();
-        // const span = React.createElement(
-        //         'span',
-        //         null,
-        //         'span view'
-        // //         );
-        // const btn = React.createElement(
-        //         'button',
-        //         {
-        //             onClick : () => console.log('test'),
-        //         },
-        //         'button click'
-        //         );
-        
+        //최초 1회 랜더링
+        ReactDOM.render(<App/>,container);
        
     </script>
 </body>
